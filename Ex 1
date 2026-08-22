@@ -1,0 +1,26 @@
+import unittest
+def pode_dirigir(idade):
+    return idade >= 18
+
+
+class TestPodeDirigir(unittest.TestCase):
+
+    def test_idade_permitida(self):
+        # Arrange (Organizar)
+        idade = 20
+
+        # Act (Agir)
+        resultado = pode_dirigir(idade)
+
+        # Assert (Afirmar)
+        self.assertTrue(resultado)
+
+    def test_idade_nao_permitida(self):
+        # Arrange (Organizar)
+        idade = 16
+
+        # Act (Agir)
+        resultado = pode_dirigir(idade)
+
+        # Assert (Afirmar)
+        self.assertFalse(resultado)
