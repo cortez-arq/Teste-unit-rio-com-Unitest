@@ -1,0 +1,51 @@
+import unittest
+
+def calcular_desconto(valor, percentual):
+
+    # Limita o desconto máximo a 50%
+    if percentual > 50:
+        percentual = 50
+
+    desconto = valor * (percentual / 100)
+    valor_final = valor - desconto
+
+    return valor_final
+
+
+class TestCalcularDesconto(unittest.TestCase):
+
+    def test_desconto_comum(self):
+        # Arrange (Organizar)
+        valor = 100
+        percentual = 10
+        valor_esperado = 90
+
+        # Act (Agir)
+        resultado = calcular_desconto(valor, percentual)
+
+        # Assert (Afirmar)
+        self.assertEqual(resultado, valor_esperado)
+
+    def test_limite_de_desconto(self):
+        # Arrange (Organizar)
+        valor = 100
+        percentual = 70
+        valor_esperado = 50
+
+        # Act (Agir)
+        resultado = calcular_desconto(valor, percentual)
+
+        # Assert (Afirmar)
+        self.assertEqual(resultado, valor_esperado)
+
+    def test_valor_zero(self):
+        # Arrange (Organizar)
+        valor = 0
+        percentual = 10
+        valor_esperado = 0
+
+        # Act (Agir)
+        resultado = calcular_desconto(valor, percentual)
+
+        # Assert (Afirmar)
+        self.assertEqual(resultado, valor_esperado)
