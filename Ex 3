@@ -1,0 +1,33 @@
+import unittest
+
+def cadastrar_senha(senha):
+
+    if len(senha) < 8:
+        raise ValueError("Senha muito curta")
+
+    return True
+
+
+class TestCadastrarSenha(unittest.TestCase):
+
+    def test_senha_valida(self):
+        senha = "1234567890"
+
+        resultado = cadastrar_senha(senha)
+        self.assertTrue(resultado)
+
+    def test_senha_muito_curta(self):
+        senha = "123"
+        with self.assertRaises(ValueError):
+            cadastrar_senha(senha)
+
+    def test_mensagem_da_excecao(self):
+        senha = "123"
+        mensagem_esperada = "Senha muito curta"
+        with self.assertRaises(ValueError) as contexto:
+            cadastrar_senha(senha)
+
+        self.assertEqual(
+            str(contexto.exception),
+            mensagem_esperada
+        )
