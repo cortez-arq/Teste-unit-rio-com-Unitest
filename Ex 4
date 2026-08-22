@@ -1,0 +1,44 @@
+import unittest
+
+class CarrinhoDeCompras:
+
+    def __init__(self):
+        self.itens = []
+
+    def adicionar_item(self, item):
+        self.itens.append(item)
+
+    def remover_item(self, item):
+        if item in self.itens:
+            self.itens.remove(item)
+        else:
+            raise ValueError("Item não encontrado")
+
+    def listar_itens(self):
+        return self.itens
+
+
+class TestCarrinhoDeCompras(unittest.TestCase):
+
+    def test_adicionar_item(self):
+        carrinho = CarrinhoDeCompras()
+        item = "Notebook"
+
+        carrinho.adicionar_item(item)
+
+        self.assertIn(item, carrinho.listar_itens())
+
+    def test_remover_item(self):
+        carrinho = CarrinhoDeCompras()
+        item = "Notebook"
+        carrinho.adicionar_item(item)
+
+        carrinho.remover_item(item)
+
+        self.assertNotIn(item, carrinho.listar_itens())
+
+    def test_remover_item_inexistente(self):
+        carrinho = CarrinhoDeCompras()
+        item = "Celular"
+        with self.assertRaises(ValueError):
+            carrinho.remover_item(item)
